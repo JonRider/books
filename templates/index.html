@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!--Get Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        color: #fff;
+        background-color: purple;
+        background-image: linear-gradient(to bottom right, #8A2BE2, white);
+      }
+      h1 {
+        text-align: center;
+        font-size: 400%;
+        padding: 10%;
+        padding-bottom: 20px;
+      }
+      button {
+        display:block;
+      }
+      .centered {
+        text-align: center;
+      }
+
+      #login {
+        width: 50%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container centered">
+      <h1>Books Login</h1>
+      <div id="login" class="container">
+      <div class="input-group input-group-lg mb-3 centered">
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group input-group-lg mb-3 centered">
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        <div class="input-group-append">
+          <button class="btn btn-dark" type="button" id="button-addon2">Login</button>
+        </div>
+      </div>
+      </div>
+
+      <button type="button" class="btn btn-light btn-lg">Sign Up</button>
+    </div>
+  </body>
+</html>
