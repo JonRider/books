@@ -36,20 +36,20 @@
   </head>
   <body>
     <div class="container centered">
-      <h1>Bookd Login</h1>
+      <h1>Bookd Sign Up</h1>
       <div id="login" class="container">
-      <div class="form-group input-group input-group-lg mb-3 centered">
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <form action="{{ url_for('signup') }}" method="post">
+          <div class="form-group input-group input-group-lg mb-3 centered">
+            <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="form-group input-group input-group-lg mb-3 centered">
+            <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+            <div class="input-group-append">
+              <button class="btn btn-dark" type="submit" id="button-addon2">Signup</button>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="form-group input-group input-group-lg mb-3 centered">
-        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-        <div class="form-group input-group-append">
-          <button class="btn btn-dark" type="button" id="button-addon2">Login</button>
-        </div>
-      </div>
-      </div>
-
-      <button type="button" onclick="location.href='{{ url_for('signup') }}';" class="btn btn-light btn-lg">Sign Up</button>
     </div>
   </body>
 </html>
