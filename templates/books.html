@@ -1,43 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Bookd</title>
-    <!--Get Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-      html {
-        height: 100%;
-      }
-      body {
-        color: #fff;
-        background-color: purple;
-        background-image: linear-gradient(to bottom right, #8A2BE2, white);
-      }
-      h1 {
-        text-align: center;
-        font-size: 400%;
-        padding: 10%;
-        padding-bottom: 20px;
-        text-shadow: #2E2E2E 1px 0 5px;
-      }
-      button {
-        display:block;
-      }
-      .centered {
-        text-align: center;
-      }
+{% extends "layout.html" %}
 
-      #login {
-        width: 50%;
-      }
+{% block title %}
+  Bookd
+{% endblock %}
 
-    </style>
-  </head>
-  <body>
+{% block body %}
     <div class="container centered">
       <h1>Bookd</h1>
-      <p>{{ username }} {{ password }}</p>
     </div>
-  </body>
-</html>
+{% endblock %}

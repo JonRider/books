@@ -1,0 +1,50 @@
+html {
+  height: 100%;
+}
+body {
+  color: #fff;
+  background-color: purple;
+  background-image: linear-gradient(to bottom right, #8A2BE2, white);
+}
+h1 {
+  text-align: center;
+  font-size: 400%;
+  padding: 10%;
+  padding-bottom: 20px;
+  text-shadow: #2E2E2E 1px 0 5px;
+}
+button {
+  display:block;
+}
+.centered {
+  text-align: center;
+}
+
+#login {
+  width: 50%;
+}
+
+.warning {
+  font-size: 26px;
+  font-weight: bold;
+  animation-name: warn;
+  animation-duration: 2s ;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes warn {
+  0% {font-size: 26px;}
+  33.3% {
+    font-size: 32px;
+    color: #ffbb33;
+  }
+  95% {
+    color: #fff;
+  }
+  100% {font-size: 26px;}
+}
+
+#warn_div {
+  margin: 10px;
+}

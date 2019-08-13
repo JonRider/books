@@ -1,55 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Bookd Login</title>
-    <!--Get Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-      html {
-        height: 100%;
-      }
-      body {
-        color: #fff;
-        background-color: purple;
-        background-image: linear-gradient(to bottom right, #8A2BE2, white);
-      }
-      h1 {
-        text-align: center;
-        font-size: 400%;
-        padding: 10%;
-        padding-bottom: 20px;
-        text-shadow: #2E2E2E 1px 0 5px;
-      }
-      button {
-        display:block;
-      }
-      .centered {
-        text-align: center;
-      }
+{% extends "layout.html" %}
 
-      #login {
-        width: 50%;
-      }
+{% block title %}
+  Bookd Login
+{% endblock %}
 
-    </style>
-  </head>
-  <body>
-    <div class="container centered">
-      <h1>Bookd Login</h1>
-      <div id="login" class="container">
-      <div class="form-group input-group input-group-lg mb-3 centered">
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+{% block body %}
+<div class="container centered">
+  <h1>Bookd Login</h1>
+  <div id="login" class="container">
+    <form action="{{ url_for('index') }}" method="post">
+      <div class="input-group input-group-lg mb-3 centered">
+        <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
       </div>
-      <div class="form-group input-group input-group-lg mb-3 centered">
-        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-        <div class="form-group input-group-append">
-          <button class="btn btn-dark" type="button" id="button-addon2">Login</button>
+      <div class="input-group input-group-lg mb-3 centered">
+        <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        <div class="input-group-append">
+          <button class="btn btn-dark" type="submit" id="button-addon2">Login</button>
         </div>
       </div>
-      </div>
-
-      <button type="button" onclick="location.href='{{ url_for('signup') }}';" class="btn btn-light btn-lg">Sign Up</button>
-    </div>
-  </body>
-</html>
+    </form>
+  </div>
+  <button type="button" onclick="location.href='{{ url_for('signup') }}';" class="btn btn-light btn-lg">Sign Up</button>
+  <div id="warn_div">
+    <a class="warning">{{ message }}</a>
+  </div>
+</div>
+{% endblock %}
