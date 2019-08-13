@@ -1,11 +1,125 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bookd Search</title>
+    <!--Get Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Get Google Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
 
-{% block title %}
-  Bookd
-{% endblock %}
+                // By default, submit button is disabled
+                const submit = document.querySelector('#submit');
+                submit.disabled = true;
 
-{% block body %}
+                // Enable button if there is text in the input field
+                document.querySelector('#search').onkeyup = () => {
+                    if (document.querySelector('#search').value.length > 0)
+                        submit.disabled = false;
+                    else
+                        submit.disabled = true;
+                    };
+        });
+    </script>
+  </head>
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      color: #fff;
+      background-color: purple;
+      background-image: linear-gradient(to bottom right, #8A2BE2, white);
+    }
+    h1 {
+      text-align: center;
+      font-size: 400%;
+      padding: 10%;
+      padding-bottom: 20px;
+      text-shadow: #2E2E2E 1px 0 5px;
+    }
+    button {
+      display:block;
+    }
+    .centered {
+      text-align: center;
+    }
+
+    .field {
+      width: 50%;
+    }
+
+    .warning {
+      font-size: 26px;
+      font-weight: bold;
+      animation-name: warn;
+      animation-duration: 2s ;
+      animation-fill-mode: forwards;
+
+    }
+
+    @keyframes warn {
+      0% {font-size: 26px;}
+      33.3% {
+        font-size: 32px;
+        color: #ffbb33;
+      }
+      95% {
+        color: #fff;
+      }
+      100% {font-size: 26px;}
+    }
+
+    #warn_div {
+      margin: 10px;
+    }
+
+    #logout {
+      margin-left: 10px;
+    }
+
+</style>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Bookd</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Search<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">API</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Logged in as: {{ username }}
+    </span>
+    <form class="form-inline">
+      <button id="logout" class="btn btn-sm btn-outline-secondary" type="button">Logout</button>
+    </form>
+  </div>
+</nav>
     <div class="container centered">
-      <h1>Bookd</h1>
+      <h1>Bookd Search</h1>
+      <div class="container field">
+        <form action="{{ url_for('index') }}" method="post">
+          <div class="input-group input-group-lg mb-3 centered">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="material-icons" style="font-size:32px">search</i></span>
+            </div>
+            <input type="text" id="search" class="form-control" name="search" placeholder="Book Title, Author or ISBN" aria-label="search" aria-describedby="basic-addon1">
+            <div class="input-group-append">
+              <button class="btn btn-dark" type="submit" id="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-{% endblock %}
+  </body>
+</html>

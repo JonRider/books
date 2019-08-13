@@ -28,6 +28,13 @@ def index():
         username = request.form.get("username")
         password = request.form.get("password")
 
+        # Check for blank password
+        if password == '':
+            return render_template("index.html", message="Password cannot be blank!")
+
+        # Check for blank username
+        if username == '':
+            return render_template("index.html", message="Username cannot be blank!")
 
         # Check if usename does not exist
         if db.execute("SELECT * FROM users WHERE username = :username", {"username": username}).rowcount == 0:
@@ -50,6 +57,14 @@ def signup():
         # Get username and password
         username = request.form.get("username")
         password = request.form.get("password")
+
+        # Check for blank password
+        if password == '':
+            return render_template("signup.html", message="Password cannot be blank!")
+
+        # Check for blank username
+        if username == '':
+            return render_template("signup.html", message="Username cannot be blank!")
 
         # Check if usename does not exist
         if db.execute("SELECT * FROM users WHERE username = :username", {"username": username}).rowcount == 1:

@@ -7,7 +7,7 @@
 {% block body %}
 <div class="container centered">
   <h1>Bookd Login</h1>
-  <div id="login" class="container">
+  <div class="container field">
     <form action="{{ url_for('index') }}" method="post">
       <div class="input-group input-group-lg mb-3 centered">
         <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
@@ -15,7 +15,7 @@
       <div class="input-group input-group-lg mb-3 centered">
         <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
         <div class="input-group-append">
-          <button class="btn btn-dark" type="submit" id="button-addon2">Login</button>
+          <button class="btn btn-dark" type="submit" id="submit">Login</button>
         </div>
       </div>
     </form>
