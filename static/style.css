@@ -5,6 +5,7 @@ body {
   color: #fff;
   background-color: purple;
   background-image: linear-gradient(to bottom right, #8A2BE2, white);
+  background-attachment: fixed;
 }
 h1 {
   text-align: center;
@@ -47,4 +48,14 @@ button {
 
 #warn_div {
   margin: 10px;
+}
+
+#logout {
+  margin-left: 10px;
+}
+
+table {
+  margin-top: 40px;
+  color: black;
+  margin-bottom: 40px;
 }

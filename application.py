@@ -44,7 +44,7 @@ def index():
         else:
             user = db.execute("SELECT * FROM users WHERE username = :username", {"username": username}).fetchone()
             if user.password == password:
-                return render_template("books.html")
+                return render_template("search.html", username=username)
             else:
                 return render_template("index.html", message="Invalid Password!")
 
@@ -74,6 +74,29 @@ def signup():
             db.execute("INSERT INTO users (username, password) VALUES (:username, :password)",
                     {"username": username, "password": password})
             db.commit()
-            return render_template("books.html", username=username, password=password)
+            return render_template("search.html", username=username)
 
     return render_template("signup.html")
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    """Allow users to search for books."""
+    if request.method == "POST":
+        # Get search form
+        search = request.form.get("search").strip()
+        search_partial = search + '%'
+
+        books = db.execute("SELECT * FROM books WHERE isbn LIKE :search OR author LIKE :search OR title LIKE :search", {"search": search_partial}).fetchall()
+
+        return render_template("search.html", search=search, books=books)
+    #actually you cant get this without being logged in
+    return render_template("search.html")
+
+@app.route("/book/<title>")
+def book(title):
+    """Detail page for individual book."""
+    return render_template("book.html", title=title)
+
+@app.route("/api/<int:isbn>")
+def api(isbn):
+    """Get API request."""

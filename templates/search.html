@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--Get Google Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--Get local stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <script>
       document.addEventListener('DOMContentLoaded', () => {
 
@@ -24,64 +26,6 @@
         });
     </script>
   </head>
-  <style>
-    html {
-      height: 100%;
-    }
-    body {
-      color: #fff;
-      background-color: purple;
-      background-image: linear-gradient(to bottom right, #8A2BE2, white);
-    }
-    h1 {
-      text-align: center;
-      font-size: 400%;
-      padding: 10%;
-      padding-bottom: 20px;
-      text-shadow: #2E2E2E 1px 0 5px;
-    }
-    button {
-      display:block;
-    }
-    .centered {
-      text-align: center;
-    }
-
-    .field {
-      width: 50%;
-    }
-
-    .warning {
-      font-size: 26px;
-      font-weight: bold;
-      animation-name: warn;
-      animation-duration: 2s ;
-      animation-fill-mode: forwards;
-
-    }
-
-    @keyframes warn {
-      0% {font-size: 26px;}
-      33.3% {
-        font-size: 32px;
-        color: #ffbb33;
-      }
-      95% {
-        color: #fff;
-      }
-      100% {font-size: 26px;}
-    }
-
-    #warn_div {
-      margin: 10px;
-    }
-
-    #logout {
-      margin-left: 10px;
-    }
-
-</style>
-
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Bookd</a>
@@ -101,14 +45,14 @@
       Logged in as: {{ username }}
     </span>
     <form class="form-inline">
-      <button id="logout" class="btn btn-sm btn-outline-secondary" type="button">Logout</button>
+      <button id="logout" onclick="location.href='{{ url_for('index') }}';" class="btn btn-sm btn-outline-secondary" type="button">Logout</button>
     </form>
   </div>
 </nav>
     <div class="container centered">
       <h1>Bookd Search</h1>
       <div class="container field">
-        <form action="{{ url_for('index') }}" method="post">
+        <form action="{{ url_for('search') }}" method="post">
           <div class="input-group input-group-lg mb-3 centered">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="material-icons" style="font-size:32px">search</i></span>
@@ -120,6 +64,32 @@
           </div>
         </form>
       </div>
+      {% if books %}
+      <table class="table table-light table-sm table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ISBN</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <td>{{ book.isbn }}</td>
+        <td><a href="{{ url_for('book', title=book.title) }}">{{ book.title }}</a></td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% elif search %}
+  <div id="warn_div">
+    <a class="warning"> Sorry, could not find '{{ search }}'</a>
+  </div>
+  {% endif %}
     </div>
   </body>
 </html>
