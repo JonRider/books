@@ -2,11 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title>{{ book.title }} on Bookd</title>
     <!--Get Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--Get Google Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Get local stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
   </head>
@@ -29,13 +31,74 @@
       Logged in as: {{ username }}
     </span>
     <form class="form-inline">
-      <button id="logout" onclick="location.href='{{ url_for('index') }}';" class="btn btn-sm btn-outline-secondary" type="button">Logout</button>
+      <button id="logout" onclick="location.href='{{ url_for('logout') }}';" class="btn btn-sm btn-outline-secondary" type="button">Logout</button>
     </form>
   </div>
 </nav>
     <div class="container centered">
       <h1>Bookd Details</h1>
-      <h5>{{ title }}
+      <div class=row>
+        <div class="col-sm-6">
+      <div class="card centered">
+        <h5 class="card-header">{{ book.title }}</h5>
+        <div class="card-body">
+          <p class="card-text">Author: {{ book.author }}</p>
+          <p class="card-text">Published in: {{ book.year }}</p>
+          <p class="card-text">ISBN: {{ book.isbn }}</p>
+          <p class="card-text">Average Rating: {{ average_rating }}</p>
+          <p class="card-text">Number of Ratings: {{ ratings_count }}</p>
+        <a href="#" class="btn btn-dark">Write a Review</a>
+        </div>
+      </div>
+      </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header">Bookd Reviews</h5>
+            <div class="card-body">
+              <p class="card-text">Rate and write a Review:</p>
+              <div class="input-group mb-3 radios">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option1" checked>
+                  <label class="form-check-label" for="inlineRadio2">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option3">
+                  <label class="form-check-label" for="inlineRadio2">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option4">
+                  <label class="form-check-label" for="inlineRadio2">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option5">
+                  <label class="form-check-label" for="inlineRadio2">5</label>
+                </div>
+                </div>
+                <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Write your review here" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-dark" type="submit">Submit</button>
+                  </div>
+                </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <a><span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span></a><br>
+                    <a>"I absolutley love this book! It's the best Sci-Fi book I have every read in my life!"</a><br>
+                    <a class="by">-Jon{{username}}</a>
+                  </li>
+                  <li class="list-group-item">Review 2</li>
+                  <li class="list-group-item">Review 3</li>
+                </ul>
+        </div>
+    </div>
     </div>
   </body>
 </html>

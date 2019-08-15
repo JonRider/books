@@ -59,3 +59,36 @@ table {
   color: black;
   margin-bottom: 40px;
 }
+
+card {
+  margin-bottom: 40px;
+}
+
+.card-title, .card-text, .card-header, .list-group-item, .form-check-label {
+  color: black;
+}
+
+.by {
+  font-weight: bold;
+  color: darkgrey;
+}
+
+.checked {
+  color: orange;
+}
+
+.radios {
+  text-align: center;
+  display: inline-block;
+}
+
+.star {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  outline: none;
+}
+
+.star:checked {
+  color: orange;
+}
