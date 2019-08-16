@@ -38,65 +38,70 @@
     <div class="container centered">
       <h1>Bookd Details</h1>
       <div class=row>
-        <div class="col-sm-6">
+        <div class="col-sm-6 book">
       <div class="card centered">
         <h5 class="card-header">{{ book.title }}</h5>
         <div class="card-body">
           <p class="card-text">Author: {{ book.author }}</p>
           <p class="card-text">Published in: {{ book.year }}</p>
           <p class="card-text">ISBN: {{ book.isbn }}</p>
-          <p class="card-text">Average Rating: {{ average_rating }}</p>
-          <p class="card-text">Number of Ratings: {{ ratings_count }}</p>
-        <a href="#" class="btn btn-dark">Write a Review</a>
+          <p class="card-text">Average Rating on Goodreads: {{ average_rating }}</p>
+          <p class="card-text">Number of Ratings on Goodreads: {{ ratings_count }}</p>
         </div>
       </div>
       </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 book">
           <div class="card">
             <h5 class="card-header">Bookd Reviews</h5>
             <div class="card-body">
               <p class="card-text">Rate and write a Review:</p>
+              <form action="{{ url_for('book', title=book.title) }}" method="post">
               <div class="input-group mb-3 radios">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option1" checked>
+                  <input class="form-check-input star fa fa-star" type="radio" name="rating" value="1" checked>
                   <label class="form-check-label" for="inlineRadio2">1</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option2">
+                  <input class="form-check-input star fa fa-star" type="radio" name="rating" value="2">
                   <label class="form-check-label" for="inlineRadio2">2</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option3">
+                  <input class="form-check-input star fa fa-star" type="radio" name="rating" value="3">
                   <label class="form-check-label" for="inlineRadio2">3</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option4">
+                  <input class="form-check-input star fa fa-star" type="radio" name="rating" value="4">
                   <label class="form-check-label" for="inlineRadio2">4</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input star fa fa-star" type="radio" name="inlineRadioOptions" value="option5">
+                  <input class="form-check-input star fa fa-star" type="radio" name="rating" value="5">
                   <label class="form-check-label" for="inlineRadio2">5</label>
                 </div>
                 </div>
                 <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Write your review here" aria-describedby="basic-addon2">
+                <input type="text" class="form-control" name="review" placeholder="{{ message }}" aria-describedby="basic-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-dark" type="submit">Submit</button>
                   </div>
                 </div>
+                </form>
+              {% if reviews %}
               <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <a><span class="fa fa-star checked"></span>
+                {% for review in reviews %}
+                  <li class="list-group-item"><a>
+                    {% for n in range(review.rating) %}
                     <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    {% for n in range(5-review.rating) %}
                     <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span></a><br>
-                    <a>"I absolutley love this book! It's the best Sci-Fi book I have every read in my life!"</a><br>
-                    <a class="by">-Jon{{username}}</a>
+                    {% endfor %}
+                    </a><br>
+                    <a>{{review.review}}</a><br>
+                    <a class="by">-{{review.username}}</a>
                   </li>
-                  <li class="list-group-item">Review 2</li>
-                  <li class="list-group-item">Review 3</li>
+                  {% endfor %}
                 </ul>
+                {% endif %}
         </div>
     </div>
     </div>

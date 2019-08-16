@@ -3,8 +3,8 @@ html {
 }
 body {
   color: #fff;
-  background-color: purple;
-  background-image: linear-gradient(to bottom right, #8A2BE2, white);
+  background-color: #6610f2;
+  background-image: linear-gradient(to bottom right, #6610f2, white);
   background-attachment: fixed;
 }
 h1 {
@@ -60,7 +60,7 @@ table {
   margin-bottom: 40px;
 }
 
-card {
+.book {
   margin-bottom: 40px;
 }
 
@@ -70,7 +70,7 @@ card {
 
 .by {
   font-weight: bold;
-  color: darkgrey;
+  color: #4B515D;
 }
 
 .checked {
