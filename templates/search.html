@@ -5,8 +5,8 @@
     <title>Bookd Search</title>
     <!--Get Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--Get Google Material Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Get local stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <script>
@@ -55,7 +55,7 @@
         <form action="{{ url_for('search') }}" method="post">
           <div class="input-group input-group-lg mb-3 centered">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1"><i class="material-icons" style="font-size:32px">search</i></span>
+              <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
             </div>
             <input type="text" id="search" class="form-control" name="search" placeholder="Book Title, Author or ISBN" aria-label="search" aria-describedby="basic-addon1">
             <div class="input-group-append">

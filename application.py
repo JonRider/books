@@ -172,6 +172,9 @@ def api(isbn):
 @app.route("/logout")
 def logout():
     """Logout Session"""
+    # If not logged in return to index
+    if "username" not in session:
+        return render_template("index.html")
 
     # Log the user out of the session
     session.pop("username")
