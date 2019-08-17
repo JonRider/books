@@ -6,6 +6,8 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+from hash import hash_pass, verify_hash
+
 app = Flask(__name__)
 
 # Check for environment variable
@@ -50,7 +52,7 @@ def index():
         # Check if password is correct then login
         else:
             user = db.execute("SELECT * FROM users WHERE username = :username", {"username": username}).fetchone()
-            if user.password == password:
+            if verify_hash(password, user.password) == True:
                 # Log the user into the session
                 session["username"] = username
                 session["user_id"] = user.id
@@ -81,8 +83,11 @@ def signup():
             return render_template("signup.html", message="Username already exists!")
         # Otherwise add it to the database
         else:
+            # Hash Password
+            hash = hash_pass(password)
+            # Enter User and Password into database
             db.execute("INSERT INTO users (username, password) VALUES (:username, :password)",
-                    {"username": username, "password": password})
+                    {"username": username, "password": hash})
             db.commit()
             # Check to see what the user_id was set up as in the database
             user = db.execute("SELECT * FROM users WHERE username = :username", {"username": username}).fetchone()
