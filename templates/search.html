@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Bookd Search</title>
-    <!--Get Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Add icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--Get local stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+{% extends "layout.html" %}
+
+{% block title %}
+Bookd Search
+{% endblock %}
+    {% block javascript %}
     <script>
       document.addEventListener('DOMContentLoaded', () => {
 
@@ -25,20 +20,17 @@
                     };
         });
     </script>
-  </head>
-  <body>
+    {% endblock %}
+    {% block body %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Bookd</a>
+  <a class="navbar-brand" href="">Bookd</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Search<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">API</a>
+        <a class="nav-link" href="{{ url_for('search') }}">Search<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <span class="navbar-text">
@@ -91,5 +83,4 @@
   </div>
   {% endif %}
     </div>
-  </body>
-</html>
+{% endblock %}

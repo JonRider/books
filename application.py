@@ -1,7 +1,7 @@
 import os
 import requests
 
-from flask import Flask, render_template, request, session
+from flask import Flask, jsonify, render_template, request, session
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -169,10 +169,27 @@ def book(title):
 
     return render_template("book.html", message=message, reviews=reviews, username=session["username"], book=book, average_rating=average_rating, ratings_count=ratings_count)
 
-@app.route("/api/<int:isbn>")
+@app.route("/api/<isbn>")
 def api(isbn):
     """Get API request."""
-    return render_template("index.html")
+    # Get the book details from the ISBN
+    try:
+        book = db.execute("SELECT id, title, author, year FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone()
+    except:
+    # If the number is not valid return a 404
+        return 404
+
+    # Calculate reviews and rating
+    ratings = db.execute("Select rating FROM reviews WHERE books_id = :books_id", {"books_id": book.id})
+    review_count = ratings.rowcount
+    total_ratings = 0
+    for rating in ratings:
+        total_ratings += rating.rating
+    average_score = format(total_ratings / review_count, '.2f')
+
+    # Put details in a JSON Object
+    api = {"title": book.title, "author": book.author, "year": book.year, "isbn": isbn, "review_count": review_count, "average_score": average_score}
+    return jsonify(api)
 
 @app.route("/logout")
 def logout():
